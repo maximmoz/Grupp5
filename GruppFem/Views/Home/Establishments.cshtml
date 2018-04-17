@@ -1,0 +1,18 @@
+﻿@model  List<GruppFem.ServiceReference1.EstablishmentInfo>
+
+@{
+    /**/
+
+    ViewBag.Title = "Establishments";
+}
+
+@foreach (var item in Model)
+{
+    <p>@item.Name</p>
+    <p>@item.Description</p>
+    <p>@item.ID</p>
+
+
+    @Html.ActionLink("Delete", "DeleteEstablishment", new { establishmentID = item.ID });
+
+}

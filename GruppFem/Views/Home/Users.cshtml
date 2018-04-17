@@ -1,0 +1,19 @@
+﻿@model  List<GruppFem.ServiceReference1.UserInfo>
+@{
+    /**/
+
+    ViewBag.Title = "Users";
+}
+
+@foreach (var item in Model)
+{
+    <p>@item.Username</p>
+    <p>@item.Password</p>
+    <p>@item.FName</p>
+    <p>@item.LName</p>
+    <p>@item.Email</p>
+
+
+    @Html.ActionLink("Delete", "DeleteUser", new { userID = item.ID });
+
+}
