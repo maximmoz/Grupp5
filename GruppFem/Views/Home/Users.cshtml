@@ -2,18 +2,33 @@
 @{
     /**/
 
+    /**/
+
+    /**/
+
+    /**/
+
     ViewBag.Title = "Users";
 }
 
 @foreach (var item in Model)
 {
-    <p>@item.Username</p>
-    <p>@item.Password</p>
-    <p>@item.FName</p>
-    <p>@item.LName</p>
-    <p>@item.Email</p>
+
+    using (Html.BeginForm())
+    {
+        @Html.Hidden("userID", item.ID);
+        @Html.TextBox("username", item.Username);
+        @Html.TextBox("password", item.Password);
+        @Html.TextBox("firstname", item.FName);
+        @Html.TextBox("lastname", item.LName);
+        @Html.TextBox("email", item.Email);
+        <input type="submit" value="Update">
 
 
-    @Html.ActionLink("Delete", "DeleteUser", new { userID = item.ID });
 
+
+
+        @Html.ActionLink("Delete", "DeleteUser", new { userID = item.ID });
+
+    }
 }

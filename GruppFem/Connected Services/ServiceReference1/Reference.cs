@@ -327,6 +327,18 @@ namespace GruppFem.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreateEstablishment", ReplyAction="http://tempuri.org/IService1/CreateEstablishmentResponse")]
         System.Threading.Tasks.Task CreateEstablishmentAsync(string name, string description);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateUser", ReplyAction="http://tempuri.org/IService1/UpdateUserResponse")]
+        void UpdateUser(int userID, string username, string password, string firstname, string lastname, string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateUser", ReplyAction="http://tempuri.org/IService1/UpdateUserResponse")]
+        System.Threading.Tasks.Task UpdateUserAsync(int userID, string username, string password, string firstname, string lastname, string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateEstablishment", ReplyAction="http://tempuri.org/IService1/UpdateEstablishmentResponse")]
+        void UpdateEstablishment(int establishmentID, string name, string description);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateEstablishment", ReplyAction="http://tempuri.org/IService1/UpdateEstablishmentResponse")]
+        System.Threading.Tasks.Task UpdateEstablishmentAsync(int establishmentID, string name, string description);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -418,6 +430,22 @@ namespace GruppFem.ServiceReference1 {
         
         public System.Threading.Tasks.Task CreateEstablishmentAsync(string name, string description) {
             return base.Channel.CreateEstablishmentAsync(name, description);
+        }
+        
+        public void UpdateUser(int userID, string username, string password, string firstname, string lastname, string email) {
+            base.Channel.UpdateUser(userID, username, password, firstname, lastname, email);
+        }
+        
+        public System.Threading.Tasks.Task UpdateUserAsync(int userID, string username, string password, string firstname, string lastname, string email) {
+            return base.Channel.UpdateUserAsync(userID, username, password, firstname, lastname, email);
+        }
+        
+        public void UpdateEstablishment(int establishmentID, string name, string description) {
+            base.Channel.UpdateEstablishment(establishmentID, name, description);
+        }
+        
+        public System.Threading.Tasks.Task UpdateEstablishmentAsync(int establishmentID, string name, string description) {
+            return base.Channel.UpdateEstablishmentAsync(establishmentID, name, description);
         }
     }
 }

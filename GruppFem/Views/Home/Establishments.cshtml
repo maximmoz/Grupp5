@@ -3,16 +3,31 @@
 @{
     /**/
 
+    /**/
+
     ViewBag.Title = "Establishments";
 }
 
 @foreach (var item in Model)
 {
-    <p>@item.Name</p>
-    <p>@item.Description</p>
-    <p>@item.ID</p>
+
+    using (Html.BeginForm())
+    {
+        @Html.Hidden("establishmentID", item.ID);
+        @Html.TextBox("name", item.Name);
+        @Html.TextBox("description", item.Description);
+
+        <input type="submit" value="Update">
 
 
-    @Html.ActionLink("Delete", "DeleteEstablishment", new { establishmentID = item.ID });
+
+
+
+        @Html.ActionLink("Delete", "DeleteEstablishment", new { establishmentID = item.ID });
+
+    }
+
+
+
 
 }

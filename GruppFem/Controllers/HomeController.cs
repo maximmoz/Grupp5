@@ -48,16 +48,24 @@ namespace GruppFem.Controllers
             return View("Index");
         }
 
+        [HttpPost]
+        public ActionResult Users(int userID, string username, string password, string firstname, string lastname, string email)
+        {
+            client.UpdateUser(userID, username, password, firstname, lastname, email);
+            return View("Index");
+        }
+
         public ActionResult Establishments()
         {
 
             return View(client.GetEstablishmentInfo().ToList());
         }
         [HttpPost]
-        public ActionResult Establishments(int establishmentID)
+        public ActionResult Establishments(int establishmentID, string name, string description)
         {
 
-            return View(client.GetEstablishmentInfo().ToList());
+            client.UpdateEstablishment(establishmentID, name, description);
+            return RedirectToAction("Establishments");
         }
 
         public ActionResult DeleteUser(int userID)
