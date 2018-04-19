@@ -72,14 +72,46 @@ namespace GruppFem.Controllers
         {
             client.DeleteUser(userID);
 
-            return View("Index");
+            return RedirectToAction("Users");
         }
 
         public ActionResult DeleteEstablishment(int establishmentID)
         {
             client.DeleteEstablishment(establishmentID);
 
-            return View("Index");
+            return RedirectToAction("Establishments");
+        }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(UserInfo loginInfo)
+        {
+
+
+            if(loginInfo.Username == null || loginInfo.Password == null)
+            {
+                ModelState.AddModelError("", "You have to enter both username and password. ;-)");
+                return View();
+            }
+            else
+            {
+                if (client.LoginUser(loginInfo.Username, loginInfo.Password) == true)
+                {
+                    System.Web.HttpContext.Current.Session.Add("sessionUsername", loginInfo.Username);
+                    System.Web.Security.FormsAuthentication.RedirectFromLoginPage(loginInfo.Username, false);
+                }
+                else
+                {
+                    ModelState.AddModelError("", "The username/password that you have entered is not correct. Try again.");
+                    return View();
+                }
+
+            }
+            return View();
         }
     }
 }

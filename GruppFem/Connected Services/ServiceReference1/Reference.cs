@@ -339,6 +339,12 @@ namespace GruppFem.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateEstablishment", ReplyAction="http://tempuri.org/IService1/UpdateEstablishmentResponse")]
         System.Threading.Tasks.Task UpdateEstablishmentAsync(int establishmentID, string name, string description);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/LoginUser", ReplyAction="http://tempuri.org/IService1/LoginUserResponse")]
+        bool LoginUser(string username, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/LoginUser", ReplyAction="http://tempuri.org/IService1/LoginUserResponse")]
+        System.Threading.Tasks.Task<bool> LoginUserAsync(string username, string password);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -446,6 +452,14 @@ namespace GruppFem.ServiceReference1 {
         
         public System.Threading.Tasks.Task UpdateEstablishmentAsync(int establishmentID, string name, string description) {
             return base.Channel.UpdateEstablishmentAsync(establishmentID, name, description);
+        }
+        
+        public bool LoginUser(string username, string password) {
+            return base.Channel.LoginUser(username, password);
+        }
+        
+        public System.Threading.Tasks.Task<bool> LoginUserAsync(string username, string password) {
+            return base.Channel.LoginUserAsync(username, password);
         }
     }
 }

@@ -1,0 +1,18 @@
+﻿@model GruppFem.ServiceReference1.UserInfo
+@{
+    ViewBag.Title = "Login";
+}
+
+
+@using (Html.BeginForm())
+{
+    <p>Username: </p>
+    @Html.TextBoxFor(m => m.Username)
+    <p>Password: </p>
+    @Html.PasswordFor(m => m.Password)
+    <input type="submit" value="Login" />
+    
+    @Html.ValidationSummary()
+}
+<h2>Login</h2>
+
