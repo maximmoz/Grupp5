@@ -1,6 +1,16 @@
-﻿@model  List<GruppFem.ServiceReference1.EstablishmentInfo>
+﻿
+
+
+@model  List<GruppFem.ServiceReference1.EstablishmentInfo>
+
+
 
 @{
+    /**/
+
+    /**/
+
+
     /**/
 
     /**/
@@ -10,11 +20,12 @@
     /**/
 
     ViewBag.Title = "Establishments";
+    var counter = 0;
+
 }
 
 @foreach (var item in Model)
 {
-
     using (Html.BeginForm())
     {
         @Html.Hidden("establishmentID", item.ID);
@@ -29,26 +40,29 @@
             <label>3</label> @Html.RadioButton("rating", "3", item.UserRating);
             <label>4</label> @Html.RadioButton("rating", "4", item.UserRating);
             <label>5</label> @Html.RadioButton("rating", "5", item.UserRating);
+            if (counter >= item.UserID.Count())
+            {
+                <label>Your rating: </label>@Html.TextBox("yourrating", "You haven't rated this establishment yet");
+
+            }
+            else
+            {
+                <label>Your rating: </label> @Html.TextBox("yourrating", item.URating[counter].ToString());
+
+                counter++;
+            }
             <input type="submit" value="Update">
-            @Html.ActionLink("Delete", "DeleteEstablishment", new { establishmentID = item.ID });
-
-
         }
         else
         {
-            <p>You have to be logged in to submit a rating or update establishments. :(</p>
+            <p> You have to be logged in to submit a rating or update establishments. :(</p>
 
         }
 
-
-
-
-
-
-
+        @Html.ActionLink("Delete", "DeleteEstablishment", new { establishmentID = item.ID });
     }
-
-
-
-
 }
+
+
+
+

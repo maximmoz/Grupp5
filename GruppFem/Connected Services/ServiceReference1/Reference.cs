@@ -221,6 +221,12 @@ namespace GruppFem.ServiceReference1 {
         private double RatingField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double[] URatingField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int[] UserIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int UserRatingField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -286,6 +292,32 @@ namespace GruppFem.ServiceReference1 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public double[] URating {
+            get {
+                return this.URatingField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.URatingField, value) != true)) {
+                    this.URatingField = value;
+                    this.RaisePropertyChanged("URating");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int[] UserID {
+            get {
+                return this.UserIDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserIDField, value) != true)) {
+                    this.UserIDField = value;
+                    this.RaisePropertyChanged("UserID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int UserRating {
             get {
                 return this.UserRatingField;
@@ -331,10 +363,10 @@ namespace GruppFem.ServiceReference1 {
         System.Threading.Tasks.Task<GruppFem.ServiceReference1.UserInfo[]> GetUserInfoAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetEstablishmentInfo", ReplyAction="http://tempuri.org/IService1/GetEstablishmentInfoResponse")]
-        GruppFem.ServiceReference1.EstablishmentInfo[] GetEstablishmentInfo();
+        GruppFem.ServiceReference1.EstablishmentInfo[] GetEstablishmentInfo(System.Nullable<int> userID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetEstablishmentInfo", ReplyAction="http://tempuri.org/IService1/GetEstablishmentInfoResponse")]
-        System.Threading.Tasks.Task<GruppFem.ServiceReference1.EstablishmentInfo[]> GetEstablishmentInfoAsync();
+        System.Threading.Tasks.Task<GruppFem.ServiceReference1.EstablishmentInfo[]> GetEstablishmentInfoAsync(System.Nullable<int> userID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteUser", ReplyAction="http://tempuri.org/IService1/DeleteUserResponse")]
         void DeleteUser(int userID);
@@ -436,12 +468,12 @@ namespace GruppFem.ServiceReference1 {
             return base.Channel.GetUserInfoAsync();
         }
         
-        public GruppFem.ServiceReference1.EstablishmentInfo[] GetEstablishmentInfo() {
-            return base.Channel.GetEstablishmentInfo();
+        public GruppFem.ServiceReference1.EstablishmentInfo[] GetEstablishmentInfo(System.Nullable<int> userID) {
+            return base.Channel.GetEstablishmentInfo(userID);
         }
         
-        public System.Threading.Tasks.Task<GruppFem.ServiceReference1.EstablishmentInfo[]> GetEstablishmentInfoAsync() {
-            return base.Channel.GetEstablishmentInfoAsync();
+        public System.Threading.Tasks.Task<GruppFem.ServiceReference1.EstablishmentInfo[]> GetEstablishmentInfoAsync(System.Nullable<int> userID) {
+            return base.Channel.GetEstablishmentInfoAsync(userID);
         }
         
         public void DeleteUser(int userID) {

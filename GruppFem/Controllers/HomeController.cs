@@ -58,7 +58,7 @@ namespace GruppFem.Controllers
         public ActionResult Establishments()
         {
 
-            return View(client.GetEstablishmentInfo().ToList());
+            return View(client.GetEstablishmentInfo((int)(System.Web.HttpContext.Current.Session["sessionID"])).ToList());
         }
         [HttpPost]
         public ActionResult Establishments(int establishmentID, string name, string description, int rating, int userID)
