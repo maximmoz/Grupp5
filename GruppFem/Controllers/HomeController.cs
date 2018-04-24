@@ -61,10 +61,13 @@ namespace GruppFem.Controllers
             return View(client.GetEstablishmentInfo().ToList());
         }
         [HttpPost]
-        public ActionResult Establishments(int establishmentID, string name, string description)
+        public ActionResult Establishments(int establishmentID, string name, string description, int rating, int userID)
         {
 
-            client.UpdateEstablishment(establishmentID, name, description);
+            userID = (int)(System.Web.HttpContext.Current.Session["sessionID"]);
+
+
+            client.UpdateEstablishment(establishmentID, name, description, rating, userID);
             return RedirectToAction("Establishments");
         }
 
@@ -101,7 +104,10 @@ namespace GruppFem.Controllers
             {
                 if (client.LoginUser(loginInfo.Username, loginInfo.Password) == true)
                 {
+
                     System.Web.HttpContext.Current.Session.Add("sessionUsername", loginInfo.Username);
+                    System.Web.HttpContext.Current.Session.Add("sessionID", client.GetUserID(loginInfo.Username, loginInfo.Password));
+
                     System.Web.Security.FormsAuthentication.RedirectFromLoginPage(loginInfo.Username, false);
                 }
                 else

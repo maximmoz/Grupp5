@@ -217,6 +217,12 @@ namespace GruppFem.ServiceReference1 {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double RatingField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UserRatingField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -262,6 +268,32 @@ namespace GruppFem.ServiceReference1 {
                 if ((object.ReferenceEquals(this.NameField, value) != true)) {
                     this.NameField = value;
                     this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Rating {
+            get {
+                return this.RatingField;
+            }
+            set {
+                if ((this.RatingField.Equals(value) != true)) {
+                    this.RatingField = value;
+                    this.RaisePropertyChanged("Rating");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserRating {
+            get {
+                return this.UserRatingField;
+            }
+            set {
+                if ((this.UserRatingField.Equals(value) != true)) {
+                    this.UserRatingField = value;
+                    this.RaisePropertyChanged("UserRating");
                 }
             }
         }
@@ -335,16 +367,22 @@ namespace GruppFem.ServiceReference1 {
         System.Threading.Tasks.Task UpdateUserAsync(int userID, string username, string password, string firstname, string lastname, string email);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateEstablishment", ReplyAction="http://tempuri.org/IService1/UpdateEstablishmentResponse")]
-        void UpdateEstablishment(int establishmentID, string name, string description);
+        void UpdateEstablishment(int establishmentID, string name, string description, int rating, int userID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateEstablishment", ReplyAction="http://tempuri.org/IService1/UpdateEstablishmentResponse")]
-        System.Threading.Tasks.Task UpdateEstablishmentAsync(int establishmentID, string name, string description);
+        System.Threading.Tasks.Task UpdateEstablishmentAsync(int establishmentID, string name, string description, int rating, int userID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/LoginUser", ReplyAction="http://tempuri.org/IService1/LoginUserResponse")]
         bool LoginUser(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/LoginUser", ReplyAction="http://tempuri.org/IService1/LoginUserResponse")]
         System.Threading.Tasks.Task<bool> LoginUserAsync(string username, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetUserID", ReplyAction="http://tempuri.org/IService1/GetUserIDResponse")]
+        int GetUserID(string username, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetUserID", ReplyAction="http://tempuri.org/IService1/GetUserIDResponse")]
+        System.Threading.Tasks.Task<int> GetUserIDAsync(string username, string password);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -446,12 +484,12 @@ namespace GruppFem.ServiceReference1 {
             return base.Channel.UpdateUserAsync(userID, username, password, firstname, lastname, email);
         }
         
-        public void UpdateEstablishment(int establishmentID, string name, string description) {
-            base.Channel.UpdateEstablishment(establishmentID, name, description);
+        public void UpdateEstablishment(int establishmentID, string name, string description, int rating, int userID) {
+            base.Channel.UpdateEstablishment(establishmentID, name, description, rating, userID);
         }
         
-        public System.Threading.Tasks.Task UpdateEstablishmentAsync(int establishmentID, string name, string description) {
-            return base.Channel.UpdateEstablishmentAsync(establishmentID, name, description);
+        public System.Threading.Tasks.Task UpdateEstablishmentAsync(int establishmentID, string name, string description, int rating, int userID) {
+            return base.Channel.UpdateEstablishmentAsync(establishmentID, name, description, rating, userID);
         }
         
         public bool LoginUser(string username, string password) {
@@ -460,6 +498,14 @@ namespace GruppFem.ServiceReference1 {
         
         public System.Threading.Tasks.Task<bool> LoginUserAsync(string username, string password) {
             return base.Channel.LoginUserAsync(username, password);
+        }
+        
+        public int GetUserID(string username, string password) {
+            return base.Channel.GetUserID(username, password);
+        }
+        
+        public System.Threading.Tasks.Task<int> GetUserIDAsync(string username, string password) {
+            return base.Channel.GetUserIDAsync(username, password);
         }
     }
 }
