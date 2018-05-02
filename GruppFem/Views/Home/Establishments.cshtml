@@ -40,9 +40,10 @@
             <label>3</label> @Html.RadioButton("rating", "3", item.UserRating);
             <label>4</label> @Html.RadioButton("rating", "4", item.UserRating);
             <label>5</label> @Html.RadioButton("rating", "5", item.UserRating);
-            if (counter >= item.UserID.Count())
+            if (item.URating[counter] == 0)
             {
                 <label>Your rating: </label>@Html.TextBox("yourrating", "You haven't rated this establishment yet");
+                counter++;
 
             }
             else
