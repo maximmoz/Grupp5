@@ -11,6 +11,7 @@ namespace GruppFem.Controllers
     {
 
         ServiceReference1.Service1Client client = new Service1Client();
+        ServiceReference2.LogginClient loginClient = new ServiceReference2.LogginClient();
 
         // GET: Home
         public ActionResult Index()
@@ -108,6 +109,40 @@ namespace GruppFem.Controllers
                     System.Web.HttpContext.Current.Session.Add("sessionUsername", loginInfo.Username);
                     System.Web.HttpContext.Current.Session.Add("sessionID", client.GetUserID(loginInfo.Username, loginInfo.Password));
 
+                    System.Web.Security.FormsAuthentication.RedirectFromLoginPage(loginInfo.Username, false);
+                }
+                else
+                {
+                    ModelState.AddModelError("", "The username/password that you have entered is not correct. Try again.");
+                    return View();
+                }
+
+            }
+            return View();
+        }
+
+        public ActionResult LoginAdmin()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult LoginAdmin(UserInfo loginInfo)
+        {
+
+
+            if (loginInfo.Username == null || loginInfo.Password == null)
+            {
+                ModelState.AddModelError("", "You have to enter both username and password. ;-)");
+                return View();
+            }
+            else
+            {
+                if (loginClient.GetLogginData(loginInfo.Username, loginInfo.Password, "KodSysA").ToString() != "")
+                {
+                    System.Web.HttpContext.Current.Session.Add("sessionUsername", loginInfo.Username);
+                    System.Web.HttpContext.Current.Session.Add("sessionUserType", "Sysadmin");
                     System.Web.Security.FormsAuthentication.RedirectFromLoginPage(loginInfo.Username, false);
                 }
                 else
