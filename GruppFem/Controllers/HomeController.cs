@@ -21,22 +21,17 @@ namespace GruppFem.Controllers
 
         public ActionResult Users()
         {
+            if (User.Identity.IsAuthenticated && this.Session["sessionUserType"].ToString() == "Sysadmin")
+            {
+                return View(client.GetUserInfo().ToList());
 
-            return View(client.GetUserInfo().ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
 
-        public ActionResult CreateEstablishment()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult CreateEstablishment(string name, string description)
-        {
-            client.CreateEstablishment(name, description);
-
-            return View("Index");
-        }
         public ActionResult CreateUser()
         {
             return View();
@@ -52,23 +47,36 @@ namespace GruppFem.Controllers
         [HttpPost]
         public ActionResult Users(int userID, string username, string password, string firstname, string lastname, string email)
         {
-            client.UpdateUser(userID, username, password, firstname, lastname, email);
-            return View("Index");
+
+            
+            
+                client.UpdateUser(userID, username, password, firstname, lastname, email);
+                return View("Index");
+            
+            
+            
         }
 
         public ActionResult Establishments()
         {
-
-            return View(client.GetEstablishmentInfo((int)(System.Web.HttpContext.Current.Session["sessionID"])).ToList());
+            if (User.Identity.IsAuthenticated)
+            {
+                return View(client.GetEstablishmentInfo((int)(System.Web.HttpContext.Current.Session["sessionID"])).ToList());
+            }
+            else
+            {
+                return View(client.GetEstablishments().ToList());
+            }
+            
         }
         [HttpPost]
-        public ActionResult Establishments(int establishmentID, string name, string description, int rating, int userID)
+        public ActionResult Establishments(int establishmentID, int rating, int userID)
         {
 
             userID = (int)(System.Web.HttpContext.Current.Session["sessionID"]);
 
 
-            client.UpdateEstablishment(establishmentID, name, description, rating, userID);
+            client.UpdateEstablishment(establishmentID, rating, userID);
             return RedirectToAction("Establishments");
         }
 
@@ -77,13 +85,6 @@ namespace GruppFem.Controllers
             client.DeleteUser(userID);
 
             return RedirectToAction("Users");
-        }
-
-        public ActionResult DeleteEstablishment(int establishmentID)
-        {
-            client.DeleteEstablishment(establishmentID);
-
-            return RedirectToAction("Establishments");
         }
 
         public ActionResult Login()
@@ -108,6 +109,7 @@ namespace GruppFem.Controllers
 
                     System.Web.HttpContext.Current.Session.Add("sessionUsername", loginInfo.Username);
                     System.Web.HttpContext.Current.Session.Add("sessionID", client.GetUserID(loginInfo.Username, loginInfo.Password));
+                    System.Web.HttpContext.Current.Session.Add("sessionUserType", "User");
 
                     System.Web.Security.FormsAuthentication.RedirectFromLoginPage(loginInfo.Username, false);
                 }

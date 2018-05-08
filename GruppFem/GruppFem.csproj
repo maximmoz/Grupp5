@@ -179,7 +179,6 @@
     <Content Include="Views\Home\Users.cshtml" />
     <Content Include="Views\Home\Establishments.cshtml" />
     <Content Include="Views\Home\CreateUser.cshtml" />
-    <Content Include="Views\Home\CreateEstablishment.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Home\LoginAdmin.cshtml" />

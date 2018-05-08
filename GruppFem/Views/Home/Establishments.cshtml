@@ -8,16 +8,6 @@
 @{
     /**/
 
-    /**/
-
-
-    /**/
-
-    /**/
-
-    /**/
-
-    /**/
 
     ViewBag.Title = "Establishments";
     var counter = 0;
@@ -32,37 +22,35 @@
         @Html.TextBox("name", item.Name);
         @Html.TextBox("description", item.Description);
         @Html.TextBox("ratingSummary", item.Rating);
-        @Html.Hidden("userID", this.Session["sessionID"]);
-        if (this.Session["sessionUsername"] != null)
+
+        if (User.Identity.IsAuthenticated)
         {
-            <label>1</label> @Html.RadioButton("rating", "1", item.UserRating);
-            <label>2</label> @Html.RadioButton("rating", "2", item.UserRating);
-            <label>3</label> @Html.RadioButton("rating", "3", item.UserRating);
-            <label>4</label> @Html.RadioButton("rating", "4", item.UserRating);
-            <label>5</label> @Html.RadioButton("rating", "5", item.UserRating);
-            if (item.URating[counter] == 0)
+            @Html.Hidden("userID", this.Session["sessionID"]);
+            if (this.Session["sessionUsername"] != null)
             {
-                <label>Your rating: </label>@Html.TextBox("yourrating", "You haven't rated this establishment yet");
-                counter++;
+                <label>1</label> @Html.RadioButton("rating", "1", item.UserRating);
+                <label>2</label> @Html.RadioButton("rating", "2", item.UserRating);
+                <label>3</label> @Html.RadioButton("rating", "3", item.UserRating);
+                <label>4</label> @Html.RadioButton("rating", "4", item.UserRating);
+                <label>5</label> @Html.RadioButton("rating", "5", item.UserRating);
+                if (item.URating[counter] == 0)
+                {
+                    <label>Your rating: </label>@Html.TextBox("yourrating", "You haven't rated this establishment yet");
+                    counter++;
 
+                }
+                else
+                {
+                    <label>Your rating: </label> @Html.TextBox("yourrating", item.URating[counter].ToString());
+
+                    counter++;
+                }
+                <input type="submit" value="Update">
             }
-            else
-            {
-                <label>Your rating: </label> @Html.TextBox("yourrating", item.URating[counter].ToString());
-
-                counter++;
-            }
-            <input type="submit" value="Update">
         }
-        else
-        {
-            <p> You have to be logged in to submit a rating or update establishments. :(</p>
-
-        }
-
-        @Html.ActionLink("Delete", "DeleteEstablishment", new { establishmentID = item.ID });
     }
 }
+
 
 
 
