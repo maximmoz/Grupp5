@@ -15,11 +15,11 @@ namespace GruppFem.ServiceReference2 {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference2.ILoggin")]
     public interface ILoggin {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoggin/GetLogginData", ReplyAction="http://tempuri.org/ILoggin/GetLogginDataResponse")]
-        string GetLogginData(string Anvandarnamn, string Losenord, string LogginCode);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoggin/GetLoginData", ReplyAction="http://tempuri.org/ILoggin/GetLoginDataResponse")]
+        string GetLoginData(string Anvandarnamn, string Losenord, string LogginCode);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoggin/GetLogginData", ReplyAction="http://tempuri.org/ILoggin/GetLogginDataResponse")]
-        System.Threading.Tasks.Task<string> GetLogginDataAsync(string Anvandarnamn, string Losenord, string LogginCode);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoggin/GetLoginData", ReplyAction="http://tempuri.org/ILoggin/GetLoginDataResponse")]
+        System.Threading.Tasks.Task<string> GetLoginDataAsync(string Anvandarnamn, string Losenord, string LogginCode);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -49,12 +49,12 @@ namespace GruppFem.ServiceReference2 {
                 base(binding, remoteAddress) {
         }
         
-        public string GetLogginData(string Anvandarnamn, string Losenord, string LogginCode) {
-            return base.Channel.GetLogginData(Anvandarnamn, Losenord, LogginCode);
+        public string GetLoginData(string Anvandarnamn, string Losenord, string LogginCode) {
+            return base.Channel.GetLoginData(Anvandarnamn, Losenord, LogginCode);
         }
         
-        public System.Threading.Tasks.Task<string> GetLogginDataAsync(string Anvandarnamn, string Losenord, string LogginCode) {
-            return base.Channel.GetLogginDataAsync(Anvandarnamn, Losenord, LogginCode);
+        public System.Threading.Tasks.Task<string> GetLoginDataAsync(string Anvandarnamn, string Losenord, string LogginCode) {
+            return base.Channel.GetLoginDataAsync(Anvandarnamn, Losenord, LogginCode);
         }
     }
 }

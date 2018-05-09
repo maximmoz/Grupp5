@@ -12,6 +12,8 @@ namespace GruppFem.Controllers
 
         ServiceReference1.Service1Client client = new Service1Client();
         ServiceReference2.LogginClient loginClient = new ServiceReference2.LogginClient();
+        Grupp2.Service1Client groupTwoClient = new Grupp2.Service1Client();
+        
 
         // GET: Home
         public ActionResult Index()
@@ -21,8 +23,9 @@ namespace GruppFem.Controllers
 
         public ActionResult Users()
         {
-            if (User.Identity.IsAuthenticated && this.Session["sessionUserType"].ToString() == "Sysadmin")
+            if (User.Identity.IsAuthenticated && this.Session["sessionUserType"].ToString() == "Anvandare")
             {
+                
                 return View(client.GetUserInfo().ToList());
 
             }
@@ -141,10 +144,10 @@ namespace GruppFem.Controllers
             }
             else
             {
-                if (loginClient.GetLogginData(loginInfo.Username, loginInfo.Password, "KodSysA").ToString() != "")
+                if (loginClient.GetLoginData(loginInfo.Username, loginInfo.Password, "KodAnva").ToString() != "")
                 {
                     System.Web.HttpContext.Current.Session.Add("sessionUsername", loginInfo.Username);
-                    System.Web.HttpContext.Current.Session.Add("sessionUserType", "Sysadmin");
+                    System.Web.HttpContext.Current.Session.Add("sessionUserType", "Anvandare");
                     System.Web.Security.FormsAuthentication.RedirectFromLoginPage(loginInfo.Username, false);
                 }
                 else

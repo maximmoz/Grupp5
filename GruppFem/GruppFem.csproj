@@ -91,13 +91,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Connected Services\ServiceReference1\GruppFem.ServiceReference1.CompositeType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Connected Services\ServiceReference1\GruppFem.ServiceReference1.UserInfo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Connected Services\ServiceReference1\GruppFem.ServiceReference1.EstablishmentInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\Grupp2\GruppFem.Grupp2.Business.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\Grupp2\GruppFem.Grupp2.BusinessUser1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\ServiceReference1\Service1.disco" />
@@ -111,6 +114,13 @@
     <None Include="Connected Services\ServiceReference2\configuration91.svcinfo" />
     <None Include="Connected Services\ServiceReference2\configuration.svcinfo" />
     <None Include="Connected Services\ServiceReference2\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\Grupp2\Service1.disco" />
+    <None Include="Connected Services\Grupp2\configuration91.svcinfo" />
+    <None Include="Connected Services\Grupp2\configuration.svcinfo" />
+    <None Include="Connected Services\Grupp2\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -141,6 +151,19 @@
     <None Include="Connected Services\ServiceReference2\Loggin1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\Grupp2\Service1.wsdl" />
+    <None Include="Connected Services\Grupp2\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\Grupp2\Service11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\Grupp2\Service12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\Grupp2\Service13.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -155,6 +178,11 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Connected Services\ServiceReference2\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\Grupp2\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -199,6 +227,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\ServiceReference1\" />
     <WCFMetadataStorage Include="Connected Services\ServiceReference2\" />
+    <WCFMetadataStorage Include="Connected Services\Grupp2\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

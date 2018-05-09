@@ -6,22 +6,22 @@
       <xsd:import schemaLocation="http://193.10.202.71/SysAdminLogin/Loggin.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="ILoggin_GetLogginData_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetLogginData" />
+  <wsdl:message name="ILoggin_GetLoginData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLoginData" />
   </wsdl:message>
-  <wsdl:message name="ILoggin_GetLogginData_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetLogginDataResponse" />
+  <wsdl:message name="ILoggin_GetLoginData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLoginDataResponse" />
   </wsdl:message>
   <wsdl:portType name="ILoggin">
-    <wsdl:operation name="GetLogginData">
-      <wsdl:input wsaw:Action="http://tempuri.org/ILoggin/GetLogginData" message="tns:ILoggin_GetLogginData_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ILoggin/GetLogginDataResponse" message="tns:ILoggin_GetLogginData_OutputMessage" />
+    <wsdl:operation name="GetLoginData">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILoggin/GetLoginData" message="tns:ILoggin_GetLoginData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILoggin/GetLoginDataResponse" message="tns:ILoggin_GetLoginData_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ILoggin" type="tns:ILoggin">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="GetLogginData">
-      <soap:operation soapAction="http://tempuri.org/ILoggin/GetLogginData" style="document" />
+    <wsdl:operation name="GetLoginData">
+      <soap:operation soapAction="http://tempuri.org/ILoggin/GetLoginData" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

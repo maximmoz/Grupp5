@@ -16,7 +16,7 @@
         @Html.ActionLink("Click here to view your profile", "Index", "Profile") <br />
         @Html.ActionLink("Click here to view establishments", "Establishments", "Home") <br />
     }
-    else if (this.Session["sessionUserType"].ToString() == "Sysadmin")
+    else if (this.Session["sessionUserType"].ToString() == "Anvandare")
     {
         @Html.ActionLink("Click here to view users", "Users", "Home")<br />
     }
